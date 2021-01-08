@@ -1,28 +1,13 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven 3.6.3'
-        jdk 'jdk8'
-    }
+    
     stages {
-        stage ('Initialize') {
+        stage('Build') {
             steps {
-                bat '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+                bat 'mvn clean install -DskipTests'
             }
         }
-
-        stage ('Build') {
-            steps {
-                bat 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            post {
-                success {
-                    echo 'Success' 
-                }
-            }
-        }
-    }
+        
+        
+    }   
 }
