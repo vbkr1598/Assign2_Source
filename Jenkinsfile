@@ -16,7 +16,7 @@ pipeline
                 bat """docker kill Deploy2
                         docker build . -t test2
                         docker run --rm -d -p 90:8080 --name Deploy2 test2"""
-		    sleep time: 500, unit: 'MILLISECONDS'
+		    sleep time: 750, unit: 'MILLISECONDS'
             }
         }
 	 stage ('[TEST]Deployment') {
