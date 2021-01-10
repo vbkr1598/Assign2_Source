@@ -2,7 +2,7 @@ FROM tomcat:fix1
 
 LABEL maintainer=”vbkr1598@gmail.com”
 
-ADD target/demo-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/demo.war
+ADD target/spring-mvc-example.war /usr/local/tomcat/webapps/spring-mvc-example.war
 
 EXPOSE 8080
 
