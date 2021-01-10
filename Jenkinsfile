@@ -24,13 +24,14 @@ pipeline
 		 script{
     	response_code = bat(script: '@curl --write-out %%{http_code} --silent --location --output nul http://localhost:90/spring-mvc-example', returnStdout: true)
 			 sleep(10)
-	
+			 echo 'VAL1 : ${response_code}'
     	if(response_code =='200') 
         {echo 'Test Passed!\n Access the App from http://localhost:90/spring-mvc-example/'}
 	    else {
 	        echo '[ERROR] Application deployment was unsuccesful'}	
         }
 	 }
+		 echo 'VAL2: ${response_code} ${env.response_code}'
 	 }
 	}
 	post {
