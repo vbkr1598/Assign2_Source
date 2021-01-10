@@ -15,14 +15,14 @@ pipeline {
             }
         }
 	stage ('[TEST]Deployment') {
-	steps{
+	
     	def var1 = bat(script: '@curl --write-out %%{http_code} --silent --location --output nul http://localhost:90/spring-mvc-example', returnStdout: true)
     	if(var1 =='200') 
         {echo 'Test Passed!\n Access the App from http://localhost:90/spring-mvc-example/'}
 	    else {
 	        echo '[ERROR] Application deployment was unsuccesful'
 	     
-	    }
+	    
 	}	
         }
         
