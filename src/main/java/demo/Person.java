@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.servlet.*;
-@WebServlet(name="Person",urlPatterns={"/person"})
+@WebServlet(name="demo",urlPatterns={"/person"})
 @Entity
 public class Person {
 
