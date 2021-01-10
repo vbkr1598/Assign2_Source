@@ -23,7 +23,7 @@ pipeline
 			 echo 'Testing for HTTP response'
 		 script{
     	response_code = bat(script: '@curl --write-out %%{http_code} --silent --location --output nul http://localhost:90/spring-mvc-example', returnStdout: true)
-			 sleep(10)
+			 
 			 echo 'VAL1 : ${response_code}'
     	if(response_code =='200') 
         {echo 'Test Passed!\n Access the App from http://localhost:90/spring-mvc-example/'}
@@ -36,20 +36,20 @@ pipeline
 	}
 	post {
         always {
-		echo 'This will always run ${response_code}'
+		echo 'This will always run ${response_code} ${env.response_code}'
         }
         success {
-            echo 'This will run only if successful ${response_code}'
+            echo 'This will run only if successful ${response_code} ${env.response_code}'
         }
         failure {
-            echo 'This will run only if failed ${response_code}'
+            echo 'This will run only if failed ${response_code} ${env.response_code}'
         }
         unstable {
-            echo 'This will run only if the run was marked as unstable ${response_code}'
+            echo 'This will run only if the run was marked as unstable ${response_code} ${env.response_code}'
         }
         changed {
-            echo 'This will run only if the state of the Pipeline has changed ${response_code}'
-            echo 'For example, if the Pipeline was previously failing but is now successful ${response_code}'
+            echo 'This will run only if the state of the Pipeline has changed ${response_code} ${env.response_code}'
+            echo 'For example, if the Pipeline was previously failing but is now successful ${response_code} ${env.response_code}'
         }
     }
 }
