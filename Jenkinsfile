@@ -1,7 +1,7 @@
 pipeline
 {
     agent any
-    enviroment
+    environment
 	{
 		response_code='0'
 	}
@@ -19,6 +19,8 @@ pipeline
             }
         }
 	 stage ('[TEST]Deployment') {
+		 steps{
+			 echo 'Testing for HTTP response'
 		 script{
     	response_code = bat(script: '@curl --write-out %%{http_code} --silent --location --output nul http://localhost:90/spring-mvc-example', returnStdout: true)
 	
@@ -28,6 +30,6 @@ pipeline
 	        echo '[ERROR] Application deployment was unsuccesful'}	
         }
 	 }
-	
+	 }
 	}   
 }
