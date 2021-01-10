@@ -30,9 +30,9 @@ pipeline
 	    else {
 	        echo '[ERROR] Application deployment was unsuccesful'}	
         }
+			 echo 'VAL2: ${response_code} ${env.response_code}'
 	 }
-		 echo 'VAL2: ${response_code} ${env.response_code}'
-	 }
+	}
 	}
 	post {
         always {
