@@ -27,29 +27,29 @@ pipeline
 			 
 			 
     	if(response_code =='200') 
-        {echo 'Test Passed!\n Access the App from http://localhost:90/spring-mvc-example/'}
+        {echo '[SUCCESS] Test Passed!'}
 	    else {
-	        echo '[ERROR] Application deployment was unsuccesful'}	
+	        echo '[ERROR] Application deployment was unsuccesful!'}	
         }
 	}
 	}
 	}
 	post {
         always {
-		echo 'This will always run RESPONSE: '+ response_code
+		echo '[PIPELINE] This will always run once steps are completed.'
         }
         success {
-            echo 'This will run only if successful RESPONSE: '+ response_code
+            echo '[PIPELINE] This will run only if successful\n Access the App from http://localhost:90/spring-mvc-example/'
         }
         failure {
-            echo 'This will run only if failed RESPONSE: '+ response_code
+		echo '[PIPELINE] This will run only if there is failure HTTP_RESPONSE: '+ response_code
         }
         unstable {
-            echo 'This will run only if the run was marked as unstable RESPONSE: '+ response_code
+            echo '[PIPELINE] This will run only if the run was marked as unstable HTTP_RESPONSE: '+ response_code
         }
         changed {
-            echo 'This will run only if the state of the Pipeline has changed RESPONSE: '+ response_code
-            echo 'For example, if the Pipeline was previously failing but is now successful RESPONSE: '+ response_code
+            echo '[PIPELINE] This will run only if the state of the Pipeline has changed HTTP_RESPONSE: '+ response_code
+            echo 'For example, if the Pipeline was previously failing but is now successful'
         }
     }
 }
