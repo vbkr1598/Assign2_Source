@@ -4,7 +4,7 @@ pipeline
     environment
 	{
 		response_code='0'
-		unique_id =UUID.randomUUID().toString()// uuid_val()//('${env.BUILD_TAG}'+UUID.randomUUID().toString())
+		unique_id =uuid_val()//('${env.BUILD_TAG}'+UUID.randomUUID().toString())
 		
 	}
     stages 
@@ -131,5 +131,5 @@ Boolean uuid_verify(String var, String unique_id)
 }
 String uui_val()
 {
-	return "${env.BUILD_TAG}+UUID.randomUUID().toString()"
+	return (''+BUILD_TAG+''+UUID.randomUUID().toString())
 }
