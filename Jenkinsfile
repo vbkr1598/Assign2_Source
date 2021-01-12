@@ -4,9 +4,19 @@ pipeline
     environment
 	{
 		response_code='0'
+		 def unique_id = ''+BUILD_TAG+UUID.randomUUID().toString()
 	}
     stages 
 	{
+	stage('Generate UUID')
+	    {
+            	steps
+		    {
+			echo 'Writing UUID to version.html'
+                	uuid_write(unique_id)
+			echo '[SUCCESS]UUID written'  
+            	    }
+	    }
         stage('Maven install')
 	    {
             	steps
@@ -32,7 +42,13 @@ pipeline
 		 	script
 			    {
     				response_code = bat(script: '@curl --write-out %%{http_code} --silent --location --output nul http://localhost:90/spring-mvc-example/pages/version.html', returnStdout: true)
-			 	if(response_code =='200') echo '[SUCCESS] Test Passed!'
+			 	if(response_code =='200')
+				    {
+					    def temp=bat(script: '@curl --silent --location http://localhost:90/spring-mvc-example/pages/version.html', returnStdout: true)
+					    if(uuid_verify(temp,unique_id)) echo '[SUCCESS] Latest version deployed!'
+					    else echo '[ERROR] Old version found!'
+			 	//echo '[SUCCESS] Test Passed!'
+				    }
 	    			else echo '[ERROR] Application deployment was unsuccesful!'
 				 Debug()
         		    }
@@ -69,3 +85,43 @@ def Debug()
 	{
 		echo 'DEBUG'
 	}
+def uuid_write(String unique_id)
+{//def unique_id = UUID.randomUUID().toString()
+def file = new File('C:/Users/Vibhor/.jenkins/workspace/Assign2_Source/WebContent/WEB-INF/pages/version.html')
+//Parse it with XmlSlurper
+def xml = new XmlSlurper().parse(file)
+//Update the node value using replaceBody
+//xml.tag1[0].replaceBody 'success'
+xml.tag1.replaceBody ''+unique_id
+//tag1.replaceBody 'success'
+//tag1[0].replaceBody 'success'
+//Create the update xml string
+def updatedXml = groovy.xml.XmlUtil.serialize(xml)
+//Write the content back
+file.write(updatedXml)
+echo 'UUID Written to file: '+unique_id
+/*echo 'Time to read and verify'
+
+xml = new XmlSlurper().parse(file)
+def var1=xml.tag1.text()
+assert xml.tag1.text() == ''+unique_id : 'Failed call'
+echo 'file '+var1
+echo 'works'*/
+    
+   // def varx=bat(script:"@curl --silent --location http://localhost:90/spring-mvc-example/pages/version.html", returnStdout: true)
+   // return varx
+    
+}
+
+Boolean uuid_verify(String var, String unique_id)
+{
+   	def xml = new XmlSlurper().parseText(var)
+	def var3=xml.tag1.text()
+	echo '[VERIFY] UUID value: '+var3
+	echo '[VERIFY] Expected Value: '+unique_id
+	assert xml.tag1.text() == ''+unique_id : 'Failed verify'
+
+	return true
+
+
+}
