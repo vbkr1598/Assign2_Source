@@ -41,6 +41,6 @@ public class HomeController {
 	public String hello(Locale locale, Model model) {
 		System.out.println("hello Page Requested");
 		
-		return "hello.html";
+		return "redirect:/pages/hello.html";
 	}
 }
