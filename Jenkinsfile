@@ -131,5 +131,7 @@ Boolean uuid_verify(String var, String unique_id)
 }
 String uui_val()
 {
+	def t=(''+BUILD_TAG+''+UUID.randomUUID().toString())
+	echo 'UUID VaL:' +t
 	return (''+BUILD_TAG+''+UUID.randomUUID().toString())
 }
