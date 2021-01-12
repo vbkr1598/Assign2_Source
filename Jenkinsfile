@@ -5,7 +5,8 @@ pipeline
 	{
 		response_code='0'
 	}
-    stages {
+    stages 
+	{
         stage('Maven install')
 	    {
             	steps
@@ -30,18 +31,20 @@ pipeline
 			 echo 'Testing for HTTP response'
 		 	script
 			    {
-    				response_code = bat(script: '@curl --write-out %%{http_code} --silent --location --output nul http://localhost:90/spring-mvc-example', returnStdout: true)
+    				response_code = bat(script: '@curl --write-out %%{http_code} --silent --location --output nul http://localhost:90/spring-mvc-example/pages/version.html', returnStdout: true)
 			 	if(response_code =='200') echo '[SUCCESS] Test Passed!'
 	    			else echo '[ERROR] Application deployment was unsuccesful!'
+				 Debug()
         		    }
 		    }
 	     }
-}
-post 
+	}
+	post 
 	{
         	always
 		{
 			echo '[PIPELINE] This will always run once steps are completed.'
+			Debug()
        		 }
        		success
 		{
@@ -61,4 +64,8 @@ post
             		echo 'For example, if the Pipeline was previously failing but is now successful'
         	}
     	}
+	def Debug()
+	{
+		echo 'DEBUG'
+	}
 }
