@@ -1,22 +1,17 @@
- def unique_id = BUILD_TAG+UUID.randomUUID().toString()
+def unique_id = BUILD_TAG+UUID.randomUUID().toString()
 pipeline
 {
     agent any
     environment
 	{
 		response_code='0'
-		
-		
 	}
     stages 
 	{
 	stage('Generate UUID')
 	    {
-		    
-		    
-            	steps
+		steps
 		    {
-			
 			echo 'Writing UUID to version.html'
                 	uuid_write(unique_id)
 			echo '[SUCCESS]UUID written'  
@@ -55,7 +50,6 @@ pipeline
 			 	//echo '[SUCCESS] Test Passed!'
 				    }
 	    			else echo '[ERROR] Application deployment was unsuccesful!'
-				 Debug()
         		    }
 		    }
 	     }
@@ -65,7 +59,6 @@ pipeline
         	always
 		{
 			echo '[PIPELINE] This will always run once steps are completed.'
-			Debug()
        		 }
        		success
 		{
@@ -86,25 +79,25 @@ pipeline
         	}
     	}
 }
-def Debug()
+/*def Debug()
 	{
 		echo 'DEBUG'
-	}
+	}*/
 def uuid_write(String unique_id)
 {//def unique_id = UUID.randomUUID().toString()
-def file = new File('C:/Users/Vibhor/.jenkins/workspace/Assign2_Source/WebContent/WEB-INF/pages/version.html')
+	def file = new File('C:/Users/Vibhor/.jenkins/workspace/Assign2_Source/WebContent/WEB-INF/pages/version.html')
 //Parse it with XmlSlurper
-def xml = new XmlSlurper().parse(file)
+	def xml = new XmlSlurper().parse(file)
 //Update the node value using replaceBody
 //xml.tag1[0].replaceBody 'success'
-xml.tag1.replaceBody ''+unique_id
+	xml.tag1.replaceBody ''+unique_id
 //tag1.replaceBody 'success'
 //tag1[0].replaceBody 'success'
 //Create the update xml string
-def updatedXml = groovy.xml.XmlUtil.serialize(xml)
+	def updatedXml = groovy.xml.XmlUtil.serialize(xml)
 //Write the content back
-file.write(updatedXml)
-echo 'UUID Written to file: '+unique_id
+	file.write(updatedXml)
+	echo 'UUID Written to file: '+unique_id
 /*echo 'Time to read and verify'
 
 xml = new XmlSlurper().parse(file)
@@ -125,10 +118,7 @@ Boolean uuid_verify(String var, String unique_id)
 	echo '[VERIFY] UUID value: '+var3
 	echo '[VERIFY] Expected Value: '+unique_id
 	assert xml.tag1.text() == ''+unique_id : 'Failed verify'
-
 	return true
-
-
 }
 /*String uui_val()
 {
