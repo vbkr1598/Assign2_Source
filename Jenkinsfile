@@ -10,10 +10,11 @@ pipeline
 	{
 	stage('Generate UUID')
 	    {
-		    unique_id = ''+BUILD_TAG+''+unique_id
+		    
 		    
             	steps
 		    {
+			unique_id = ''+BUILD_TAG+''+unique_id
 			echo 'Writing UUID to version.html'
                 	uuid_write(unique_id)
 			echo '[SUCCESS]UUID written'  
