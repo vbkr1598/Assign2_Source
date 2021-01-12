@@ -28,13 +28,19 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "home";
+		return "home.jsp";
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public String user(@Validated User user, Model model) {
 		System.out.println("User Page Requested");
 		model.addAttribute("userName", user.getUserName());
-		return "user";
+		return "user.jsp";
+	}
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	public String hello(Locale locale, Model model) {
+		System.out.println("hello Page Requested");
+		
+		return "hello.html";
 	}
 }
