@@ -4,7 +4,8 @@ pipeline
     environment
 	{
 		response_code='0'
-		def unique_id = UUID.randomUUID().toString()
+		def unique_id = (BUILD_TAG+UUID.randomUUID().toString())
+		
 	}
     stages 
 	{
@@ -14,7 +15,7 @@ pipeline
 		    
             	steps
 		    {
-			unique_id = ''+BUILD_TAG+''+unique_id
+			
 			echo 'Writing UUID to version.html'
                 	uuid_write(unique_id)
 			echo '[SUCCESS]UUID written'  
