@@ -1,10 +1,11 @@
+ def unique_id = BUILD_TAG+UUID.randomUUID().toString()
 pipeline
 {
     agent any
     environment
 	{
 		response_code='0'
-		unique_id =uuid_val()//('${env.BUILD_TAG}'+UUID.randomUUID().toString())
+		
 		
 	}
     stages 
@@ -129,9 +130,9 @@ Boolean uuid_verify(String var, String unique_id)
 
 
 }
-String uui_val()
+/*String uui_val()
 {
 	def t=(''+BUILD_TAG+''+UUID.randomUUID().toString())
 	echo 'UUID VaL:' +t
 	return (''+BUILD_TAG+''+UUID.randomUUID().toString())
-}
+}*/
