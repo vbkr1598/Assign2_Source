@@ -37,10 +37,10 @@ public class HomeController {
 		model.addAttribute("userName", user.getUserName());
 		return "user.jsp";
 	}
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	@RequestMapping(value = "/version", method = RequestMethod.GET)
 	public String hello(Locale locale, Model model) {
 		System.out.println("hello Page Requested");
 		
-		return "redirect:/pages/hello.html";
+		return "redirect:/pages/version.html";
 	}
 }
