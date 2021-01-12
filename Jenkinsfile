@@ -4,7 +4,7 @@ pipeline
     environment
 	{
 		response_code='0'
-		unique_id = uuid_val()//('${env.BUILD_TAG}'+UUID.randomUUID().toString())
+		unique_id =UUID.randomUUID().toString()// uuid_val()//('${env.BUILD_TAG}'+UUID.randomUUID().toString())
 		
 	}
     stages 
