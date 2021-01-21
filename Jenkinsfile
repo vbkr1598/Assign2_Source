@@ -1,5 +1,5 @@
 def unique_id = BUILD_TAG+UUID.randomUUID().toString()
-def enable_aws=1
+def enable_aws='1'
 pipeline
 {
     agent any
@@ -66,6 +66,8 @@ pipeline
 				steps
 				{
 				echo 'AWS Block initiated'
+				script
+				{
 				if(enable_aws == '1')
 				{
 				bat '''cd C:/Users/Vbhor/Desktop/terra
@@ -73,6 +75,7 @@ pipeline
 					terraform output'''
 				}
 				else echo 'AWS Deployment Off'
+				}
 				}
 			}
 	}
