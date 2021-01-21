@@ -1,4 +1,5 @@
 def unique_id = BUILD_TAG+UUID.randomUUID().toString()
+def enable_aws=1
 pipeline
 {
     agent any
@@ -60,6 +61,14 @@ pipeline
 			 bat '''mvn test'''
 		    }
 	     }
+	if(enable_aws == '1')
+		{
+			stage('AWS Deployment')
+			{
+				bat '''cd C:/Users/Vbhor/Desktop/terra
+					terraform apply -auto-approve'''
+			}
+		}
 	}
 	post 
 	{
