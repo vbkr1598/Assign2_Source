@@ -71,7 +71,7 @@ pipeline
 				if(enable_aws == '1')
 				{
 				bat '''cd C:/Users/Vibhor/Desktop/terra
-					@terraform apply -auto-approve
+					terraform apply -auto-approve
 					terraform output'''
 				}
 				else echo 'AWS Deployment Off'
