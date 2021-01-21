@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Home</title>
+<title>PSL Assignment Home</title>
 </head>
 <body>
 	<h1>Hello world!</h1>
