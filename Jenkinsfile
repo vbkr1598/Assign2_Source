@@ -63,6 +63,8 @@ pipeline
 	     }
 	stage('AWS Deployment')
 			{
+				steps
+				{
 				if(enable_aws == '1')
 				{
 				bat '''cd C:/Users/Vbhor/Desktop/terra
@@ -70,6 +72,7 @@ pipeline
 					terraform output'''
 				}
 				else echo 'AWS Deployment Off'
+				}
 			}
 	}
 	post 
