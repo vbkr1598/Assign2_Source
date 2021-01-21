@@ -61,15 +61,16 @@ pipeline
 			 bat '''mvn test'''
 		    }
 	     }
-	if(enable_aws == '1')
-		{
-			stage('AWS Deployment')
+	stage('AWS Deployment')
 			{
+				if(enable_aws == '1')
+				{
 				bat '''cd C:/Users/Vbhor/Desktop/terra
 					@terraform apply -auto-approve
 					terraform output'''
+				}
+				else echo 'AWS Deployment Off'
 			}
-		}
 	}
 	post 
 	{
