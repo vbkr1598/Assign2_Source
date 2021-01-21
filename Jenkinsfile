@@ -66,7 +66,8 @@ pipeline
 			stage('AWS Deployment')
 			{
 				bat '''cd C:/Users/Vbhor/Desktop/terra
-					terraform apply -auto-approve'''
+					@terraform apply -auto-approve
+					terraform output'''
 			}
 		}
 	}
