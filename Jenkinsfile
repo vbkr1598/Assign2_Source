@@ -70,7 +70,7 @@ pipeline
 				{
 				if(enable_aws == '1')
 				{
-				bat '''cd C:/Users/Vbhor/Desktop/terra
+				bat '''cd C:/Users/Vibhor/Desktop/terra
 					@terraform apply -auto-approve
 					terraform output'''
 				}
