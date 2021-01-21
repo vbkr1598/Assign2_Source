@@ -65,6 +65,7 @@ pipeline
 			{
 				steps
 				{
+				echo 'AWS Block initiated'
 				if(enable_aws == '1')
 				{
 				bat '''cd C:/Users/Vbhor/Desktop/terra
