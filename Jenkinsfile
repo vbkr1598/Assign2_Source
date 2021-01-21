@@ -68,6 +68,7 @@ pipeline
 				echo 'AWS Block initiated'
 				script
 				{
+				sleep time: 1500, unit: 'MILLISECONDS'
 				if(enable_aws == '1')
 				{
 				bat '''cd C:/Users/Vibhor/Desktop/terra
