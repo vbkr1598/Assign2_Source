@@ -31,7 +31,7 @@ pipeline
                 bat """docker kill Deploy2
                         docker build . -t test2
                         docker run --rm -d -p 90:8080 --name Deploy2 test2"""
-		sleep time: 2000, unit: 'MILLISECONDS'
+		sleep time: 2500, unit: 'MILLISECONDS'
             	}	
 	    }
 	 stage ('[TEST]Deployment')
@@ -51,6 +51,13 @@ pipeline
 				    }
 	    			else echo '[ERROR] Application deployment was unsuccesful!'
         		    }
+		    }
+	     }
+	stage ('[TEST]Automated Test')
+	    {
+		 steps
+		    {
+			 bat '''mvn test'''
 		    }
 	     }
 	}
